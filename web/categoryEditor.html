@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Catégories</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- On charge jQuery -->
+ 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <!-- On charge le plugin JSONToTable https://github.com/jongha/jquery-jsontotable -->
+        <script type="text/javascript" 
+                src="javascript/jquery.jsontotable.min.js">
+        </script>
+        <script type="text/javascript" >
+            $(function() { // Code à exécuter après chargement de la page (onload())
+                // on initialise l'action pour le submit du formulaire
+                $("#categoryForm").submit(addCategory);
+                // On montre le contenu de la table DISCOUNT_CODE
+                showCategories();
+            });
+
+            function showError(XMLHttpRequest, textStatus, errorThrown) {
+                   alert(errorThrown + ": " + XMLHttpRequest.responseText);
+            }
+            
+            function addCategory(event) {
+                 // prevent default posting of form
+                 event.preventDefault();
+                // setup some local variables
+                var form = $(this);
+                // let's select and cache all the fields
+                var inputs = form.find("input, select, button, textarea");
+                // serialize the data in the form
+                var serializedData = form.serialize();
+
+                // let's disable the inputs for the duration of the ajax request
+                // Note: we disable elements AFTER the form data has been serialized.
+                // Disabled form elements will not be serialized.
+                inputs.prop("disabled", true);
+
+                $.getJSON(
+                        // L'url du web service
+                        'jdbc2json/InsertCategory',
+                        // Les paramètres à transmettre
+                        serializedData,
+                        // La fonction qui traite les résultats
+                        function(result) {
+                            alert( result.updateCount + " enregistrement ajouté");
+                            showCategories();
+                        }
+                ).fail( showError )
+                .always(
+                        function() {
+                            // reenable the inputs
+                            inputs.prop("disabled", false);
+                        }
+                );
+            }
+
+
+            function showCategories() {
+                $.getJSON(
+                        // L'url du web service
+                        'jdbc2json/AllCategories',
+                        // La fonction qui traite les résultats
+                        function(result) {
+                            // Les en-tête de colonnes
+                            var headers = new Array();
+                            // On va chercher les en-tête de colonne dans les méta-données
+                            $(result.metaData).each(
+                                    function(index, columnData) {
+                                        headers.push(columnData.label);
+                                    }
+                            );
+                            // On met les en-tête de colonnes au début du tableau
+                            result.records.unshift(headers);
+                            $("#categoriesTable").empty();
+                            // On convertit les enregistrements en table HTML
+                            $.jsontotable(result.records, {id: "#categoriesTable", header: true});
+                        }
+                ).fail( showError );
+           }
+        </script>
+        <!-- un CSS pour formatter la table -->
+        <link rel="stylesheet" type="text/css" href="css/tableformat.css">
+    </head>
+    <body>
+        <h1>New Category</h1>
+        <form id="categoryForm">
+            <label for="libelle">Libelle:</label>   <input id="libelle" name="libelle" type="text" value="" /><br/>
+            <label for="description">Description:</label>   <input id="description" name="description" type="text" value="" /><br/>
+            <input type="submit" value="Add new category" />                
+        </form>
+        <h2>Categories</h2>
+        <!-- La zone où les résultats vont s'afficher -->
+        <div id="categoriesTable"></div>
+    </body>
+</html>
