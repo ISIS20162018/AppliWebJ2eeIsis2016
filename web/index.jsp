@@ -43,7 +43,7 @@
                         <div class='card-content'>
                             <div class='card-title'>Listing des clients</div>
                             <div>
-                                <div class='row'><div class='col s12'><a type='button' id='displayAllClients' class='btn btn-block waves-effect orange white-text bold'>Afficher les participants</a><a type='button' id='cleanClients' class='btn btn-block waves-effect red white-text bold'>Vider le tableau</a></div></div>
+                                <div class='row'><div class='col s12'><a type='button' id='displayAllClients' class='btn btn-block waves-effect orange white-text bold'>Afficher les participants</a>&nbsp;<a type='button' id='cleanClients' class='btn btn-block waves-effect red white-text bold'>Vider le tableau</a></div></div>
                                 <div class='row'>
                                     <div class='col s12'>
 
@@ -51,7 +51,6 @@
 
                                             <div id="chart_div"></div>
                                             <div id="chart_div2"></div>
-
 
                                         </div>
                                     </div>
@@ -66,10 +65,10 @@
                         <div class='card-content'>
                             <div class='card-title'>Navigation</div>
                             <div class="collection">
-                                <a href="#!" class="collection-item active">Accueil</a>
-                                <a href="#!" class="collection-item">Alvin</a>
-                                <a href="#!" class="collection-item">Alvin</a>
-                                <a href="#!" class="collection-item">Alvin</a>
+                                <a href="#!" class="collection-item active">Tableau de bord</a>
+                                <a href="#!" class="collection-item">Répartition géographique</a>
+                                <a href="#!" class="collection-item">Récapitulatif</a>
+                                <a href="#!" class="collection-item">Stock & commandes</a>
                             </div>
 
                         </div>
@@ -82,7 +81,31 @@
 
         </div>
 
-
+        <footer class="page-footer green">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Footer Content</h5>
+                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2014 Copyright Text
+                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                </div>
+            </div>
+        </footer>
 
         <script src="./assets/js/clients_function.js"></script>
     </body>
