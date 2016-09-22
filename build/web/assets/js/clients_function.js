@@ -8,6 +8,7 @@ var clientsModules = function () {
         //Création d'un module de display clients
         var mod = {};
         $('#displayAllClients').click(function () {
+            //paramètres ici des champs / inputs
             var data = new Array();
             $.ajax({
                 url: 'jdbc2json/TousLesClients',
@@ -46,11 +47,12 @@ var clientsModules = function () {
                         {'title': 'Liste des départements',
                             'width': 800,
                             'height': 600,
-                            'pieHole': 0.6
+                            'pieHole': 0
                         },
                         type
                         );
-                var type = ["pie", "chart_div2"];
+                
+                var type = ["bar", "chart_div2"];
                 drawChart(dataTable, data,
                         {'title': 'Liste des départements',
                             'width': 800,
@@ -65,10 +67,14 @@ var clientsModules = function () {
 
 
     }();
+    
+    
+    
+    
 
     $(document).ready(function () {
         // Load the Visualization API and the corechart package.
-        google.charts.load('current', {'packages': ['corechart']});
+       
 
         return self;
     });
