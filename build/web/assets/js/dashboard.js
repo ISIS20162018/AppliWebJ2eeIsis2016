@@ -14,6 +14,7 @@ var dashboard = function () {
      * @returns {undefined}
      */
     self.lastCommands = function (cible) {
+        var count = 1;
         $(cible).html();
         $("#lastCommandsButton").click(function () {
             if ($(cible) != null) {
@@ -46,18 +47,30 @@ var dashboard = function () {
                         'height': 'auto',
                         'pieHole': 0
                     };
-                    
+
+                    if (count % 2 == 1) {
+                        $("#lastCommandsButton").removeClass("light-green");
+                        $("#lastCommandsButton").addClass("orange");
+                        count++;
+                         drawChart(dataTable, datag, options, type);
+                    } else {
+                        $("#lastCommandsButton").removeClass("orange");
+                        $("#lastCommandsButton").addClass("green");
+                        count++;
+                        $("#"+cible).html("");
+                    }
+
                     //On dessine
-                    drawChart(dataTable, datag, options, type);
+                   
 
                 });
             }
         });
     };
-    
-    self.lastRegistered = function(cible){
-        $("#lastRegisteredButton").click(function(){
-           //Ici :P 
+
+    self.lastRegistered = function (cible) {
+        $("#lastRegisteredButton").click(function () {
+            //Ici :P 
         });
     }
 

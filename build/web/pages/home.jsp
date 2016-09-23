@@ -36,19 +36,25 @@
                     </div>
                 </div>
                 <div class='col s12 l6'>
-                    <div id="last_registered"> 
-                        <div class='card'>
-                            <div class='card-content'>
-                                <div id="last_registered"></div>
-                            </div>
+                    <div class='card'>
+                        <div class='card-content'>
+                            <div id="last_registered"></div>
                         </div>
                     </div>
                 </div>
                 <div class='col s12 l6'>
-                    <div id="products_cats"></div>
+                    <div class='card'>
+                        <div class='card-content'>
+                            <div id="products_cats"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class='col s12 l6'>
-                    <div id="last_products"></div>
+                    <div class='card'>
+                        <div class='card-content'>
+                            <div id="last_products"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
