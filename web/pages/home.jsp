@@ -5,12 +5,12 @@
             <div class='row'>
                 <form>
                     <div class='col s12 m6 l3'>
-                        <a id="lastCommandsButton" class="waves-effect width100 waves-light light-green darken-4 btn-large">
+                        <a id="stateCommandsButton" class="waves-effect width100 waves-light light-green darken-4 btn-large">
                             <i class="material-icons left">library_books</i>Dernières commandes
                         </a>
                     </div>
                     <div class='col s12 m6 l3'>
-                        <a id="lastRegisteredButton" class=" waves-effect width100 waves-light light-green darken-4 btn-large">
+                        <a id="lastCommandsButton" class=" waves-effect width100 waves-light light-green darken-4 btn-large">
                             <i class="material-icons left">person</i>Derniers inscrits
                         </a>
                     </div>
@@ -31,14 +31,14 @@
                 <div class='col s12 l6'>
                     <div class='card'>
                         <div class='card-content'>
-                            <div id="last_commands"></div>
+                            <div id="state_commands"></div>
                         </div>
                     </div>
                 </div>
                 <div class='col s12 l6'>
                     <div class='card'>
                         <div class='card-content'>
-                            <div id="last_registered"></div>
+                            <div id="last_commands"></div>
                         </div>
                     </div>
                 </div>

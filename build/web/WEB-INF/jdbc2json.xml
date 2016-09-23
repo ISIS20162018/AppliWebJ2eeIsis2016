@@ -3,7 +3,7 @@
 <JDBC2JSON>       
     <DRIVERSTRING>jdbc:derby://localhost:1527/javawebisis;user=isisuser;password=isispassword</DRIVERSTRING>
 
-    <QUERY name="DernieresCommandes">
+    <QUERY name="Etat100Commandes">
         SELECT *
         FROM COMMANDE
         ORDER BY ENVOYEE_LE DESC
@@ -32,6 +32,13 @@
         INNER JOIN Ligne    ON (Commande.Numero = Ligne.Commande)
         INNER JOIN Produit  ON (Ligne.Produit = Produit.Reference)
         GROUP BY Societe		
-    </QUERY>	
+    </QUERY>
+    
+    <QUERY name="DernieresCommandes">
+        SELECT COUNT(NUMERO)AS CommandeParJour, COMMANDE.ENVOYEE_LE
+        FROM ISISUSER.COMMANDE
+        WHERE  COMMANDE.ENVOYEE_LE BETWEEN '1996-01-01' AND '1996-01-30'
+        GROUP BY COMMANDE.ENVOYEE_LE		
+    </QUERY>		
                         
 </JDBC2JSON>

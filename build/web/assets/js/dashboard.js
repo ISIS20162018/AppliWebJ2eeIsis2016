@@ -13,13 +13,13 @@ var dashboard = function () {
      * Fonction qui liste les dernirèes commandes sous forme d'un pieChart
      * @returns {undefined}
      */
-    self.lastCommands = function (cible) {
+    self.stateCommands = function (cible, button) {
         var count = 1;
         $(cible).html();
-        $("#lastCommandsButton").click(function () {
+        $(button).click(function () {
             if ($(cible) != null) {
                 $.ajax({
-                    url: 'jdbc2json/DernieresCommandes',
+                    url: 'jdbc2json/Etat100Commandes',
                     data: {}
                 }).success(function (reponse) {
                     //Notre affichage 
@@ -49,36 +49,79 @@ var dashboard = function () {
                     };
 
                     if (count % 2 == 1) {
-                        $("#lastCommandsButton").removeClass("light-green");
-                        $("#lastCommandsButton").addClass("orange");
+                        $(button).removeClass("light-green");
+                        $(button).addClass("orange");
                         count++;
-                         drawChart(dataTable, datag, options, type);
+                        drawChart(dataTable, datag, options, type);
                     } else {
-                        $("#lastCommandsButton").removeClass("orange");
-                        $("#lastCommandsButton").addClass("green");
+                        $(button).removeClass("orange");
+                        $(button).addClass("green");
                         count++;
-                        $("#"+cible).html("");
+                        $("#" + cible).html("");
                     }
 
                     //On dessine
-                   
+
 
                 });
             }
         });
     };
 
-    self.lastRegistered = function (cible) {
-        $("#lastRegisteredButton").click(function () {
-            //Ici :P 
+    self.lastCommands = function (cible, button) {
+        var count2 = 1;
+        $(button).click(function () {
+            if ($(cible) != null) {
+                $.ajax({
+                    url: 'jdbc2json/DernieresCommandes',
+                    data: {}
+                }).success(function (reponse) {
+                    console.log(reponse);
+
+                    //Notre affichage 
+                    var tab = reponse.records;
+                    var datag = [];
+                    for (var i = 0; i < tab.length; i++) {
+                        var temp = [tab[i].ENVOYEE_LE, tab[i].COMMANDEPARJOUR];
+                        datag.push(temp);
+                    }
+
+                    //Donénes à afficher : data
+                    //Construction du tableau pour le camembert
+                    var dataTable = [
+                        ["string", "date"],
+                        ["number", "Commandes"],
+                    ];
+
+                    var type = ["columnChart", cible];
+                    var options = {'title': 'Nombre de commandes',
+                        'width': '100%',
+                        'height': 'auto',
+                        'colors': ['green', '#00ff11'],
+                        'legend': 'none'
+                    };
+                    console.log(count2);
+                    if (count2 % 2 == 1) {
+                        $(button).removeClass("light-green");
+                        $(button).addClass("orange");
+                        count2++;
+                        drawChart(dataTable, datag, options, type);
+                    } else {
+                        $(button).removeClass("orange");
+                        $(button).addClass("green");
+                        count2++;
+                        $("#" + cible).html("");
+                    }
+                });
+            }
         });
     }
 
 
     $(document).ready(function () {
         return [
-            self.lastCommands("last_commands"),
-            self.lastRegistered("last_registered")
+            self.stateCommands("state_commands", "#stateCommandsButton"),
+            self.lastCommands("last_commands", "#lastCommandsButton")
         ];
     })
 

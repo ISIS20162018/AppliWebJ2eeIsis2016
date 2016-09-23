@@ -29,6 +29,12 @@ function drawChart(dataTable, datagiven, optionsTable, type) {
         case 'bar':
             var chart = new google.visualization.BarChart(document.getElementById(type[1]));
             break;
+        case 'histogram':
+            var chart = new google.visualization.Histogram(document.getElementById(type[1]));
+            break;
+        case 'columnChart':
+            var chart = new google.visualization.ColumnChart(document.getElementById(type[1]));
+            break;
     }
     // Instantiate and draw our chart, passing in some options.
 
