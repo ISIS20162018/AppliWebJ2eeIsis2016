@@ -4,13 +4,58 @@
  */
 
 
+var connexion = function () {
+    var s = {};
+    s.co = function () {
+        $("#connexion").click(function () {
+            //Requête Ajax pour se connecter
+            //Récupération des inputs
+            var identifiant = $("[name=identifiant]").val();
+            var password = $("[name=pass]").val();
+
+            $.ajax({
+                url: 'connexion',
+                data: {
+                    identifiant: identifiant,
+                    password: password
+                }
+            }).success(function (response) {
+                $('.ajaxresponse').html(response);
+
+                var s = $('.ajaxresponse').html();
+                switch (response) {
+                    case 'echec':
+                        $('.ajaxresponse').html('<span class="red-text">Les identifiants ne sont pas corrects</span>');
+                        $('#modal1').openModal();
+
+                        break;
+                    case 'success':
+                        $('.ajaxresponse').html('<span class="green-text">Les identifiants sont corrects</span>');
+                        $('#modal1').openModal();
+                       
+                        document.location.href = "home";
+                        break;
+                }
+            });
+
+        });
+    }();
+
+    return s;
+};
+
+$().ready(function () {
+    connexion();
+});
+
+
 
 
 function drawChart(dataTable, datagiven, optionsTable, type) {
 
     // Create the data table.
     var data = new google.visualization.DataTable();
-    
+
     for (var i = 0; i < dataTable.length; i++) {
         data.addColumn(dataTable[i][0], dataTable[i][1]);
     }

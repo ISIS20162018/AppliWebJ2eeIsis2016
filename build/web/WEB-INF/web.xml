@@ -4,7 +4,30 @@
         <description>ServletContextListener</description>
         <listener-class>example.RegisterDriverServletListener</listener-class>
     </listener>
-
+    <servlet>
+        <servlet-name>home</servlet-name>
+        <servlet-class>home</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>connexion</servlet-name>
+        <servlet-class>connexion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deconnexion</servlet-name>
+        <servlet-class>deconnexion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>home</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>connexion</servlet-name>
+        <url-pattern>/connexion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deconnexion</servlet-name>
+        <url-pattern>/deconnexion</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

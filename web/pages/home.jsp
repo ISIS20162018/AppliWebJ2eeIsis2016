@@ -1,6 +1,6 @@
 <div class='card'>
     <div class='card-content'>
-        <div class='card-title'>Tableau de bord</div>
+        <div class='card-title'>Tableau de bord - ${sessionScope.identifiant} </div>
         <div>
             <div class='row'>
                 <form>
@@ -57,7 +57,6 @@
                     </div>
                 </div>
             </div>
-
 
         </div>
     </div>
