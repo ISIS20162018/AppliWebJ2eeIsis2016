@@ -168,17 +168,35 @@ var dashboard = function () {
     self.distRevenues = function (cible, button) {
         var count4 = 1;
         $(button).click(function () {
-            var dateDuJour= new Date();
-            var dateDuJourMoisInterval = new Date(new Date().setMonth(dateDuJour.getMonth() - 1));
+            //1ere année
+            var dateDuJour= new Date(1996,5,5); // 5 Juin 1996
+            var dateInterval = new Date(1996,5,5);
+            var dateDuJourMoinsInterval = new Date(dateInterval.setFullYear((dateInterval.getFullYear()-1)));
             
-            alert("date du jour :" + dateDuJour + "et date autre:" + dateDuJourMoisInterval);
-
+            //2eme année
+            var dateDuJour2 = new Date(1995,5,5);
+            var dateInterval2 = new Date(1995,5,5);
+            var dateDuJourMoinsInterval2 = new Date(dateInterval2.setFullYear((dateInterval2.getFullYear()-1)));
+            
+            //Date en String
+            var dateDuJourChiffre = self.instancierDate(dateDuJour);
+            var dateDuJourMoinsIntervalChiffre = self.instancierDate(dateDuJourMoinsInterval);
+            var dateDuJourChiffre2 = self.instancierDate(dateDuJour2);
+            var dateDuJourMoinsIntervalChiffre2 = self.instancierDate(dateDuJourMoinsInterval2);
+            
+            
+            //console.log( "date debut 1 : " + dateDuJourMoinsIntervalChiffre + " ------ date dateFin 1 :  " + dateDuJourChiffre);
+            //console.log( "date debut 2 : " + dateDuJourMoinsIntervalChiffre2 + " ------ date dateFin 2 :  " + dateDuJourChiffre2);
+           
+            
             if ($(cible) != null) {
                 $.ajax({
                     url: 'jdbc2json/DistributionRevenus',
                     data: {
-                        'dateDebut': dateDuJourMoisInterval,
-                        ' dateFin': dateDuJour
+                        'dateDebut': dateDuJourMoinsIntervalChiffre,
+                        'dateFin': dateDuJourChiffre,
+                        'dateDebut2': dateDuJourMoinsIntervalChiffre2,
+                        'dateFin2': dateDuJourChiffre2
                     }
                 }).success(function (reponse) {
                     console.log(reponse);
@@ -187,40 +205,49 @@ var dashboard = function () {
                     var tab = reponse.records;
                     var datag = [];
                     for (var i = 0; i < tab.length; i++) {
-                        var temp = [tab[i].LIBELLE, tab[i].NOMBREDECOMMANDES];
+                        var temp = ["Annee N-"+i, tab[i].CHIFFREAFFAIRE];
                         datag.push(temp);
                     }
-
+                    
                     //Donénes à afficher : data
                     //Construction du tableau pour le camembert
                     var dataTable = [
-                        ["string", "libelle"],
-                        ["number", "distribution"],
+                        ["string", " Annee"],
+                        ["number", "Chiffre d'affaire"],
                     ];
 
-                    var type = ["pie", cible];
-                    var options = {'title': 'Distribution des categories',
+                    var type = ["columnChart", cible];
+                    var options = {'title': 'Chiffre d\'affaire sur les 2 dernieres annees',
                         'width': '100%',
                         'height': 'auto',
                         'pieHole': 0
                     };
-                    console.log(count3);
-                    if (count3 % 2 == 1) {
+                    console.log(count4);
+                    if (count4 % 2 == 1) {
                         $(button).removeClass("light-green");
                         $(button).addClass("orange");
-                        count3++;
+                        count4++;
                         drawChart(dataTable, datag, options, type);
                     } else {
                         $(button).removeClass("orange");
                         $(button).addClass("green");
-                        count3++;
+                        count4++;
                         $("#" + cible).html("");
                     }
                 });
             }
         });
     }
+    
+    self.instancierDate = function ( date ) {
+        var mois = ( date.getMonth()<10 ? "0"+date.getMonth() : date.getMonth() );    
+        var jour = ( date.getDate() <10 ? "0"+date.getDate() : date.getDate());
+        var dateDuJourChiffre = date.getFullYear()+"-"+mois+"-"+jour;
+        return dateDuJourChiffre;
+    }
+    
 
+    
     $(document).ready(function () {
         return [
             self.stateCommands("state_commands", "#stateCommandsButton"),
