@@ -1,17 +1,51 @@
 <%-- 
-    Document   : repartition_geograph
-    Created on : 22 sept. 2016, 22:36:26
-    Author     : moule
+    Document   : index
+    Created on : 13 sept. 2016, 16:38:54
+    Author     : Fabien
 --%>
 
-
+<%@include file="structure/header.jsp" %>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<c:choose> 
+    <c:when test="${!empty sessionScope.connected}">
+        <%@include file="structure/menu.jsp" %>
+
+        <div id="container">
+
+            <div class='row'>
+
+                <div class='col s12 l9'>
+                    <!-- TABLEAU DE BORD -->
+                    <%@include file="pages/rep_geograph.jsp" %>
+
+
+
+                </div>
+
+                <div class='col s12 l3'>
+                    <%@include file="structure/menu_sided.jsp" %>
+                </div>
+
+            </div>
+        </div>
+
+        <%@include file="structure/footer.jsp" %>
+
+    </c:when>
+    <c:otherwise>
+        <%@include file="structure/menu.jsp" %>
+
+        <%@include file="pages/login.jsp" %>
+
+        <%@include file="structure/footer.jsp" %>
+    </c:otherwise>
+</c:choose>
+
+<body>
+
+
+
+
+

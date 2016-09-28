@@ -3,6 +3,16 @@
 <JDBC2JSON>       
     <DRIVERSTRING>jdbc:derby://localhost:1527/javawebisis;user=isisuser;password=isispassword</DRIVERSTRING>
 
+    <QUERY name="CommandesParPays">
+        SELECT  PAYS_LIVRAISON,COUNT(CLIENT)AS NombreDeCommandesParPays
+        from COMMANDE
+        WHERE (PAYS_LIVRAISON = :pays) AND COMMANDE.ENVOYEE_LE BETWEEN :ddebut AND :dfin;
+    </QUERY>
+
+    <QUERY name="RecuperationPays">
+        SELECT DISTINCT PAYS_LIVRAISON FROM COMMANDE
+    </QUERY>
+
     <QUERY name="Etat100Commandes">
         SELECT *
         FROM COMMANDE
