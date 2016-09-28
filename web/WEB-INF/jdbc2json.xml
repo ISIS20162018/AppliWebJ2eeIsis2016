@@ -4,9 +4,10 @@
     <DRIVERSTRING>jdbc:derby://localhost:1527/javawebisis;user=isisuser;password=isispassword</DRIVERSTRING>
 
     <QUERY name="CommandesParPays">
-        SELECT  PAYS_LIVRAISON,COUNT(CLIENT)AS NombreDeCommandesParPays
-        from COMMANDE
-        WHERE (PAYS_LIVRAISON = :pays) AND COMMANDE.ENVOYEE_LE BETWEEN :ddebut AND :dfin;
+        SELECT COUNT(NUMERO) AS NBCOMMANDE FROM COMMANDE WHERE ENVOYEE_LE BETWEEN :ddebut AND :dfin AND PAYS_LIVRAISON = :pays
+    </QUERY>
+    <QUERY name="nbClients">
+        SELECT COUNT(DISTINCT(CLIENT.CODE)) AS NBCLIENT FROM CLIENT, COMMANDE WHERE COMMANDE.ENVOYEE_LE BETWEEN :ddebut AND :dfin AND CLIENT.CODE = COMMANDE.CLIENT AND CLIENT.PAYS = :pays
     </QUERY>
 
     <QUERY name="RecuperationPays">

@@ -32,7 +32,7 @@ var connexion = function () {
                     case 'success':
                         $('.ajaxresponse').html('<span class="green-text">Les identifiants sont corrects</span>');
                         $('#modal1').openModal();
-                       
+
                         document.location.href = "home";
                         break;
                 }
@@ -79,6 +79,9 @@ function drawChart(dataTable, datagiven, optionsTable, type) {
             break;
         case 'columnChart':
             var chart = new google.visualization.ColumnChart(document.getElementById(type[1]));
+            break;
+        case 'geoChart':
+            var chart = new google.visualization.GeoChart(document.getElementById(type[1]));
             break;
     }
     // Instantiate and draw our chart, passing in some options.

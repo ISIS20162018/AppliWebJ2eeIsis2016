@@ -9,7 +9,8 @@
         <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
         <script src="assets/js/materialize.min.js"></script>
         <title>Notre application Javascript - Clients</title>
-
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCSjULAMJsQgleWQcCOstZMNczxWdCY5w"
+        type="text/javascript"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
 
