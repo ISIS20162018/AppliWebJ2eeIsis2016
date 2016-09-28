@@ -6,22 +6,22 @@
                 <form>
                     <div class='col s12 m6 l3'>
                         <a id="stateCommandsButton" class="waves-effect width100 waves-light light-green darken-4 btn-large">
-                            <i class="material-icons left">library_books</i>Dernières commandes
+                            <i class="material-icons left">library_books</i>Etat des commandes
                         </a>
                     </div>
                     <div class='col s12 m6 l3'>
                         <a id="lastCommandsButton" class=" waves-effect width100 waves-light light-green darken-4 btn-large">
-                            <i class="material-icons left">person</i>Derniers inscrits
+                            <i class="material-icons left">person</i>Commandes du mois
                         </a>
                     </div>
                     <div class='col s12 m6 l3'>
-                        <a class="waves-effect width100 waves-light light-green darken-4 btn-large">
-                            <i class="material-icons left">loyalty</i>Catégories de produits
+                        <a id="distCategoriesButton" class="waves-effect width100 waves-light light-green darken-4 btn-large">
+                            <i class="material-icons left">loyalty</i> Distribution categories
                         </a>
                     </div>
                     <div class='col s12 m6 l3 '>
-                        <a class="light-green waves-effect width100 waves-light darken-4 btn-large">
-                            <i class="material-icons left">shopping_cart</i>Les produits
+                        <a id="distRevenues" class="light-green waves-effect width100 waves-light darken-4 btn-large">
+                            <i class="material-icons left">shopping_cart</i> Chiffes d'affaires
                         </a>
                     </div>
                 </form>
@@ -45,14 +45,14 @@
                 <div class='col s12 l6'>
                     <div class='card'>
                         <div class='card-content'>
-                            <div id="products_cats"></div>
+                            <div id="dist_categories"></div>
                         </div>
                     </div>
                 </div>
                 <div class='col s12 l6'>
                     <div class='card'>
                         <div class='card-content'>
-                            <div id="last_products"></div>
+                            <div id="revenues"></div>
                         </div>
                     </div>
                 </div>

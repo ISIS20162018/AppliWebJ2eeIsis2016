@@ -117,11 +117,116 @@ var dashboard = function () {
         });
     }
 
+    self.distCategories = function (cible, button) {
+        var count3 = 1;
+        $(button).click(function () {
+            if ($(cible) != null) {
+                $.ajax({
+                    url: 'jdbc2json/DistributionCategories',
+                    data: {}
+                }).success(function (reponse) {
+                    console.log(reponse);
+
+                    //Notre affichage 
+                    var tab = reponse.records;
+                    var datag = [];
+                    for (var i = 0; i < tab.length; i++) {
+                        var temp = [tab[i].LIBELLE, tab[i].NOMBREDECOMMANDES];
+                        datag.push(temp);
+                    }
+
+                    //Donénes à afficher : data
+                    //Construction du tableau pour le camembert
+                    var dataTable = [
+                        ["string", "libelle"],
+                        ["number", "distribution"],
+                    ];
+
+                    var type = ["pie", cible];
+                    var options = {'title': 'Distribution des categories',
+                        'width': '100%',
+                        'height': 'auto',
+                        'pieHole': 0
+                    };
+                    console.log(count3);
+                    if (count3 % 2 == 1) {
+                        $(button).removeClass("light-green");
+                        $(button).addClass("orange");
+                        count3++;
+                        drawChart(dataTable, datag, options, type);
+                    } else {
+                        $(button).removeClass("orange");
+                        $(button).addClass("green");
+                        count3++;
+                        $("#" + cible).html("");
+                    }
+                });
+            }
+        });
+    }
+
+    self.distRevenues = function (cible, button) {
+        var count4 = 1;
+        $(button).click(function () {
+            var dateDuJour= new Date();
+            var dateDuJourMoisInterval = new Date(new Date().setMonth(dateDuJour.getMonth() - 1));
+            
+            alert("date du jour :" + dateDuJour + "et date autre:" + dateDuJourMoisInterval);
+
+            if ($(cible) != null) {
+                $.ajax({
+                    url: 'jdbc2json/DistributionRevenus',
+                    data: {
+                        'dateDebut': dateDuJourMoisInterval,
+                        ' dateFin': dateDuJour
+                    }
+                }).success(function (reponse) {
+                    console.log(reponse);
+
+                    //Notre affichage 
+                    var tab = reponse.records;
+                    var datag = [];
+                    for (var i = 0; i < tab.length; i++) {
+                        var temp = [tab[i].LIBELLE, tab[i].NOMBREDECOMMANDES];
+                        datag.push(temp);
+                    }
+
+                    //Donénes à afficher : data
+                    //Construction du tableau pour le camembert
+                    var dataTable = [
+                        ["string", "libelle"],
+                        ["number", "distribution"],
+                    ];
+
+                    var type = ["pie", cible];
+                    var options = {'title': 'Distribution des categories',
+                        'width': '100%',
+                        'height': 'auto',
+                        'pieHole': 0
+                    };
+                    console.log(count3);
+                    if (count3 % 2 == 1) {
+                        $(button).removeClass("light-green");
+                        $(button).addClass("orange");
+                        count3++;
+                        drawChart(dataTable, datag, options, type);
+                    } else {
+                        $(button).removeClass("orange");
+                        $(button).addClass("green");
+                        count3++;
+                        $("#" + cible).html("");
+                    }
+                });
+            }
+        });
+    }
 
     $(document).ready(function () {
         return [
             self.stateCommands("state_commands", "#stateCommandsButton"),
-            self.lastCommands("last_commands", "#lastCommandsButton")
+            self.lastCommands("last_commands", "#lastCommandsButton"),
+            self.distCategories("dist_categories", "#distCategoriesButton"),
+            self.distRevenues("revenues", "#distRevenues")
         ];
     })
 
