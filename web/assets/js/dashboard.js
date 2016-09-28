@@ -205,7 +205,9 @@ var dashboard = function () {
                     var tab = reponse.records;
                     var datag = [];
                     for (var i = 0; i < tab.length; i++) {
-                        var temp = ["Annee N-"+i, tab[i].CHIFFREAFFAIRE];
+                        var annee = tab.length-1-i;
+                        console.log(annee);
+                        var temp = ["Annee N-"+annee, tab[i].CHIFFREAFFAIRE];
                         datag.push(temp);
                     }
                     
