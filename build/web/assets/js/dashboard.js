@@ -10,7 +10,7 @@ var dashboard = function () {
     var self = {};
 
     /**
-     * Fonction qui liste les dernirèes commandes sous forme d'un pieChart
+     * Fonction qui liste les dernières commandes sous forme d'un pieChart
      * @returns {undefined}
      */
     self.stateCommands = function (cible, button) {

@@ -11,7 +11,7 @@
         <div class='col s12'>
 
             <h2>Connectez-vous à l'application</h2>
-            <span class='chip'>Compte admin : ADMIN / ADMIN</span>
+            <span class='chip'>Compte admin : admin / admin</span>
 
             <div class='card'>
                 <div class='card-content'>

@@ -88,3 +88,7 @@ function drawChart(dataTable, datagiven, optionsTable, type) {
 
     chart.draw(data, options);
 }
+
+  $(document).ready(function() {
+    Materialize.updateTextFields();
+  });
